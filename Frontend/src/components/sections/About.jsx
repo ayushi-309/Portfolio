@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Section, SectionHeader } from '../ui/Section';
+import { DeveloperIllustration } from '../illustrations/DeveloperIllustration';
 
 export const About = () => {
   return (
@@ -10,23 +11,20 @@ export const About = () => {
         subtitle="Get to know me and what drives my passion for web development."
       />
       
-      <div className="flex flex-col md:flex-row gap-12 items-center">
+      <div className="flex flex-col lg:flex-row gap-12 items-center">
         <motion.div 
           className="flex-1 w-full"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="aspect-video rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden">
-             {/* Placeholder for workspace/about image */}
-             <span className="text-slate-500 text-lg">Workspace Image Here</span>
-          </div>
+          <DeveloperIllustration />
         </motion.div>
 
         <motion.div 
           className="flex-1 space-y-6 text-slate-300 text-lg leading-relaxed"
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.2 }}

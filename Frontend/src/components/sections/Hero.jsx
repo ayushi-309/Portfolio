@@ -4,11 +4,12 @@ import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
 import { FiArrowRight, FiDownload } from 'react-icons/fi';
 import ProfileImage from "../../assets/Images/Image.jpeg"
+import { Link } from "react-router-dom"
 
 export const Hero = () => {
   return (
-    <Section id="home" className="min-h-screen pt-32 lg:pt-0">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+    <Section id="home" className="min-h-screen pt-28 md:pt-32 pb-16 flex items-center">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
         <motion.div
           className="flex-1 space-y-8 text-center lg:text-left"
           initial={{ opacity: 0, x: -50 }}
@@ -33,27 +34,28 @@ export const Hero = () => {
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-            <Button size="lg" className="gap-2">
-              View Projects <FiArrowRight size={20} />
-            </Button>
-            <Button variant="outline" size="lg" className="gap-2">
-              Resume <FiDownload size={20} />
-            </Button>
+            <a href="#projects">
+              <Button size="lg" className="gap-2">
+                View Projects <FiArrowRight size={20} />
+              </Button>
+            </a>
+            <Link to="/resume">
+              <Button variant="outline" size="lg" className="gap-2">
+                Resume <FiDownload size={20} />
+              </Button>
+            </Link>
           </div>
         </motion.div>
 
         <motion.div
-          className="flex-1 w-full max-w-md lg:max-w-full relative"
+          className="flex-1 w-full max-w-sm md:max-w-md mx-auto relative flex justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="aspect-square rounded-full bg-gradient-to-tr from-blue-600/20 to-emerald-500/20 blur-3xl absolute inset-0"></div>
-          <div className="relative z-10 w-full aspect-[4/5] md:aspect-square bg-slate-800 rounded-3xl border border-slate-700 overflow-hidden shadow-2xl flex items-center justify-center">
-            {/* Placeholder for an actual image */}
-            <span className="text-slate-500 text-lg">
-              <img src={ProfileImage} alt="Profile Image" className="w-full h-full object-cover" />
-            </span>
+          <div className="relative z-10 w-full aspect-[4/5] max-h-[500px] bg-slate-800 rounded-3xl border border-slate-700/80 overflow-hidden shadow-2xl flex items-center justify-center">
+            <img src={ProfileImage} alt="Ayushi Tiwari" className="w-full h-full object-cover object-top" />
           </div>
         </motion.div>
       </div>
