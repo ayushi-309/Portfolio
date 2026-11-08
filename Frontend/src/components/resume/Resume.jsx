@@ -1,223 +1,309 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "./MyDocument.jsx";
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import { resumeData } from "../../data/resumeData.js";
+import { motion, AnimatePresence } from "framer-motion";
 
-const MobileResume = () => {
-    const { personalInfo, education, experience, skills, projects } = resumeData;
+const { personalInfo, education, experience, skills, projects, certifications, seminars } = resumeData;
 
-    return (
-        <div className="w-full min-h-screen bg-[#fafafa] text-zinc-600 font-sans pb-32 pt-20 px-4 relative">
-            {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-[#00b8b8]/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+const TABS = ["About", "Education", "Experience", "Skills", "Projects", "Certs"];
 
-            <div className="relative z-10 max-w-3xl mx-auto space-y-12">
-                {/* Header */}
-                <div className="text-center space-y-4">
-                    <h1 className="text-4xl font-bold text-black tracking-wide uppercase">{personalInfo.name}</h1>
-                    <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-[#00b8b8]">
-                        <a href={`mailto:${personalInfo.email}`} className="hover:text-[#008080] transition-colors">{personalInfo.email}</a>
-                        <span className="text-black/20">|</span>
-                        <a href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`} className="hover:text-[#008080] transition-colors">{personalInfo.phone}</a>
-                        <span className="text-black/20">|</span>
-                        <a href={personalInfo.portfolio} target="_blank" rel="noreferrer" className="hover:text-[#008080] transition-colors">Portfolio</a>
-                    </div>
-                    <div className="flex justify-center gap-x-4 text-sm text-zinc-500">
-                        <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
-                        <span className="text-black/20">|</span>
-                        <a href={personalInfo.github} target="_blank" rel="noreferrer" className="hover:text-black transition-colors">GitHub</a>
-                    </div>
-                </div>
-
-                {/* Education */}
-                <section>
-                    <h2 className="text-xl font-bold text-black mb-6 border-b border-[#00b8b8]/20 pb-2 flex items-center gap-2">
-                        <i className="ri-graduation-cap-line text-[#00b8b8]"></i> Education
-                    </h2>
-                    <div className="space-y-6">
-                        {education.map((item, idx) => (
-                            <div key={idx} className="bg-white border border-black/5 p-5 rounded-2xl hover:border-[#00b8b8]/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all">
-                                <div className="flex flex-col sm:flex-row sm:justify-between mb-2">
-                                    <h3 className="text-lg font-semibold text-black">{item.schoolName}</h3>
-                                    <span className="text-sm text-[#00b8b8] font-mono">{item.date}</span>
-                                </div>
-                                <p className="text-sm text-zinc-600 italic mb-1">{item.degree}</p>
-                                <p className="text-xs text-zinc-400 mb-3">{item.location}</p>
-                                {item.coursework && (
-                                    <p className="text-sm leading-relaxed"><span className="text-black font-medium">Relevant Coursework:</span> {item.coursework}</p>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Experience */}
-                {experience && experience.length > 0 && (
-                    <section>
-                        <h2 className="text-xl font-bold text-black mb-6 border-b border-[#00b8b8]/20 pb-2 flex items-center gap-2">
-                            <i className="ri-briefcase-4-line text-[#00b8b8]"></i> Experience
-                        </h2>
-                        <div className="space-y-6">
-                            {experience.map((exp, idx) => (
-                                <div key={idx} className="bg-white border border-black/5 p-5 rounded-2xl hover:border-[#00b8b8]/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all">
-                                    <div className="flex flex-col sm:flex-row sm:justify-between mb-2">
-                                        <h3 className="text-lg font-semibold text-black">{exp.company}</h3>
-                                        <span className="text-sm text-[#00b8b8] font-mono">{exp.date}</span>
-                                    </div>
-                                    <div className="flex flex-col mb-4">
-                                        <p className="text-sm text-[#008080] font-medium">{exp.role}</p>
-                                        <p className="text-xs text-zinc-400">{exp.location}</p>
-                                    </div>
-
-                                    {(exp.github || exp.liveDemo) && (
-                                        <div className="flex gap-4 mb-4">
-                                            {exp.github && (
-                                                <a href={exp.github} target="_blank" rel="noreferrer" className="text-xs flex items-center gap-1 text-zinc-500 hover:text-black transition-colors">
-                                                    <i className="ri-github-fill"></i> Source
-                                                </a>
-                                            )}
-                                            {exp.liveDemo && (
-                                                <a href={exp.liveDemo} target="_blank" rel="noreferrer" className="text-xs flex items-center gap-1 text-[#00b8b8] hover:text-[#008080] transition-colors">
-                                                    <i className="ri-external-link-line"></i> Live Demo
-                                                </a>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {exp.projectName && (
-                                        <div className="mb-1 text-sm font-semibold text-black">
-                                            Project: <span className="font-normal text-zinc-600">{exp.projectName}</span>
-                                        </div>
-                                    )}
-
-                                    {exp.techStack && (
-                                        <div className="mb-4 text-xs font-mono text-[#008080]">
-                                            <span className="text-zinc-400">Tech:</span> {exp.techStack}
-                                        </div>
-                                    )}
-
-                                    <ul className="space-y-2 mt-4">
-                                        {exp.bullets.map((bullet, i) => (
-                                            <li key={i} className="text-sm flex gap-3 text-zinc-600 leading-relaxed">
-                                                <span className="text-[#00b8b8] mt-1 flex-shrink-0">•</span>
-                                                <span>{bullet}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
-
-                {/* Skills */}
-                <section>
-                    <h2 className="text-xl font-bold text-black mb-6 border-b border-[#00b8b8]/20 pb-2 flex items-center gap-2">
-                        <i className="ri-tools-line text-[#00b8b8]"></i> Skills
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {skills.map((skill, idx) => (
-                            <div key={idx} className="bg-white border border-black/5 p-4 rounded-xl hover:border-[#00b8b8]/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all">
-                                <h3 className="text-sm font-semibold text-black mb-3 uppercase tracking-wider">{skill.category}</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {skill.list.split(',').map((s, i) => (
-                                        <span key={i} className="px-3 py-1 bg-[#00b8b8]/10 text-[#008080] text-xs rounded-full border border-[#00b8b8]/20">
-                                            {s.trim()}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* Projects */}
-                <section>
-                    <h2 className="text-xl font-bold text-black mb-6 border-b border-[#00b8b8]/20 pb-2 flex items-center gap-2">
-                        <i className="ri-code-s-slash-line text-[#00b8b8]"></i> Projects
-                    </h2>
-                    <div className="space-y-6">
-                        {projects.map((project, idx) => (
-                            <div key={idx} className="bg-white border border-black/5 p-5 rounded-2xl hover:border-[#00b8b8]/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all">
-                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
-                                    <h3 className="text-lg font-semibold text-black mb-3 sm:mb-0">{project.name}</h3>
-                                    <div className="flex gap-3">
-                                        {project.github && (
-                                            <a href={project.github} target="_blank" rel="noreferrer" className="text-xs px-3 py-1.5 bg-black/5 hover:bg-black/10 rounded-lg text-zinc-600 hover:text-black transition-colors flex items-center gap-1">
-                                                <i className="ri-github-fill"></i> GitHub
-                                            </a>
-                                        )}
-                                        {project.liveDemo && (
-                                            <a href={project.liveDemo} target="_blank" rel="noreferrer" className="text-xs px-3 py-1.5 bg-[#008080] hover:bg-[#006666] rounded-lg text-white transition-colors flex items-center gap-1 shadow-[0_4px_14px_rgba(0,128,128,0.3)] hover:shadow-[0_6px_20px_rgba(0,128,128,0.5)]">
-                                                <i className="ri-external-link-line"></i> Live Demo
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {project.techStack && (
-                                    <div className="mb-4 text-xs font-mono text-[#008080]">
-                                        <span className="text-zinc-400">Tech:</span> {project.techStack}
-                                    </div>
-                                )}
-
-                                <ul className="space-y-2">
-                                    {project.bullets.map((bullet, i) => (
-                                        <li key={i} className="text-sm flex gap-3 text-zinc-600 leading-relaxed">
-                                            <span className="text-[#00b8b8] mt-1 flex-shrink-0">•</span>
-                                            <span>{bullet}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            </div>
-
-            {/* Floating Download Button */}
-            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm">
-                <PDFDownloadLink
-                    document={<MyDocument />}
-                    fileName="Ayushi_Tiwari_Resume.pdf"
-                    className="group flex items-center justify-center w-full px-6 py-4 text-sm font-semibold text-white transition-all duration-300 bg-[#008080] rounded-2xl hover:bg-[#006666] shadow-[0_8px_30px_rgba(0,128,128,0.4)] hover:shadow-[0_8px_40px_rgba(0,128,128,0.6)] backdrop-blur-md"
-                >
-                    {({ loading }) => (
-                        <>
-                            <span className="mr-2">{loading ? "Generating PDF..." : "Download ATS Resume PDF"}</span>
-                            {!loading && <i className="ri-download-2-line text-lg group-hover:translate-y-1 transition-transform"></i>}
-                            {loading && <i className="ri-loader-4-line text-lg animate-spin"></i>}
-                        </>
-                    )}
-                </PDFDownloadLink>
-            </div>
-        </div>
-    );
+const fadeUp = {
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -12 },
+  transition: { duration: 0.28 },
 };
 
-const Resume = () => {
-    const [isMobile, setIsMobile] = useState(false);
+/* ── Pill badge ── */
+const Badge = ({ text }) => (
+  <span className="inline-block px-2.5 py-0.5 text-[11px] rounded-full bg-teal-500/10 text-teal-600 border border-teal-400/25 font-medium whitespace-nowrap">
+    {text}
+  </span>
+);
 
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
+/* ── Section card ── */
+const Card = ({ children, className = "" }) => (
+  <div className={`bg-white/80 backdrop-blur-sm border border-black/6 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-teal-400/30 transition-all duration-200 ${className}`}>
+    {children}
+  </div>
+);
 
-    if (isMobile) {
-        return <MobileResume />;
-    }
+/* ──────────────── TAB PANELS ──────────────── */
 
-    return (
-        <div className="w-full h-screen bg-[#fafafa]">
-            <PDFViewer className="w-full h-full border-none">
-                <MyDocument />
-            </PDFViewer>
+const AboutPanel = () => (
+  <motion.div {...fadeUp} className="space-y-4">
+    <Card>
+      <p className="text-sm text-zinc-600 leading-relaxed">{personalInfo.summary}</p>
+    </Card>
+
+    <div className="grid grid-cols-2 gap-3">
+      {[
+        ["📅 DOB", personalInfo.dob],
+        ["⚥ Gender", personalInfo.gender],
+        ["💍 Status", personalInfo.maritalStatus],
+        ["🗣 Languages", personalInfo.languages],
+      ].map(([label, val]) => (
+        <Card key={label} className="flex flex-col gap-0.5">
+          <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">{label}</span>
+          <span className="text-sm text-zinc-700 font-medium">{val}</span>
+        </Card>
+      ))}
+    </div>
+
+    <Card>
+      <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold block mb-1">📍 Address</span>
+      <span className="text-sm text-zinc-700">{personalInfo.address}</span>
+    </Card>
+
+    <Card>
+      <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold block mb-2">🎯 Interests</span>
+      <div className="flex flex-wrap gap-2">
+        {personalInfo.interests.map((i) => <Badge key={i} text={i} />)}
+      </div>
+    </Card>
+  </motion.div>
+);
+
+const EducationPanel = () => (
+  <motion.div {...fadeUp} className="space-y-3">
+    {education.map((edu, i) => (
+      <Card key={i}>
+        <div className="flex justify-between items-start gap-2 flex-wrap">
+          <div>
+            <h3 className="font-semibold text-black text-sm">{edu.schoolName}</h3>
+            <p className="text-xs text-teal-600 font-medium mt-0.5 italic">{edu.degree}</p>
+            <p className="text-xs text-zinc-400 mt-0.5">{edu.location}</p>
+          </div>
+          <div className="text-right flex-shrink-0">
+            <span className="text-xs font-mono text-teal-600 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded-full">{edu.date}</span>
+            <p className="text-xs font-semibold text-zinc-700 mt-1">{edu.grade}</p>
+          </div>
         </div>
-    );
+        {edu.coursework && (
+          <p className="mt-2 text-[11px] text-zinc-500 leading-relaxed border-t border-black/5 pt-2">
+            <span className="font-semibold text-zinc-600">Coursework: </span>{edu.coursework}
+          </p>
+        )}
+      </Card>
+    ))}
+  </motion.div>
+);
+
+const ExperiencePanel = () => (
+  <motion.div {...fadeUp} className="space-y-3">
+    {experience.length === 0 ? (
+      <p className="text-sm text-zinc-400 text-center py-8">No experience entries yet.</p>
+    ) : experience.map((exp, i) => (
+      <Card key={i}>
+        <div className="flex justify-between items-start gap-2 flex-wrap mb-2">
+          <div>
+            <h3 className="font-semibold text-black text-sm">{exp.role}</h3>
+            <p className="text-xs text-teal-600 italic">{exp.company} · {exp.location}</p>
+          </div>
+          <span className="text-xs font-mono text-teal-600 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded-full flex-shrink-0">{exp.date}</span>
+        </div>
+        {exp.projectName && (
+          <p className="text-xs font-semibold text-zinc-700 mb-1">
+            Project: <span className="font-normal text-zinc-500">{exp.projectName}</span>
+          </p>
+        )}
+        {exp.techStack && (
+          <p className="text-[11px] text-zinc-500 font-mono mb-2">
+            <span className="text-zinc-400">Tech:</span> {exp.techStack}
+          </p>
+        )}
+        <ul className="space-y-1 mt-2">
+          {exp.bullets.map((b, j) => (
+            <li key={j} className="flex gap-2 text-xs text-zinc-600 leading-relaxed">
+              <span className="text-teal-500 mt-0.5 flex-shrink-0">▸</span>{b}
+            </li>
+          ))}
+        </ul>
+        {(exp.github || exp.liveDemo) && (
+          <div className="flex gap-2 mt-3 pt-2 border-t border-black/5">
+            {exp.github && <a href={exp.github} target="_blank" rel="noreferrer" className="text-[11px] px-2.5 py-1 bg-black/5 hover:bg-black/10 rounded-lg text-zinc-600 hover:text-black transition-colors font-medium flex items-center gap-1">⌥ GitHub</a>}
+            {exp.liveDemo && <a href={exp.liveDemo} target="_blank" rel="noreferrer" className="text-[11px] px-2.5 py-1 bg-teal-600 hover:bg-teal-700 rounded-lg text-white transition-colors font-medium flex items-center gap-1">↗ Live Demo</a>}
+          </div>
+        )}
+      </Card>
+    ))}
+  </motion.div>
+);
+
+const SkillsPanel = () => (
+  <motion.div {...fadeUp} className="space-y-3">
+    {skills.map((s, i) => (
+      <Card key={i}>
+        <h3 className="text-[10px] uppercase tracking-wider font-bold text-zinc-400 mb-2">{s.category}</h3>
+        <div className="flex flex-wrap gap-1.5">
+          {s.list.split(",").map((item) => <Badge key={item} text={item.trim()} />)}
+        </div>
+      </Card>
+    ))}
+  </motion.div>
+);
+
+const ProjectsPanel = () => (
+  <motion.div {...fadeUp} className="space-y-3">
+    {projects.map((p, i) => (
+      <Card key={i}>
+        <div className="flex justify-between items-start gap-2 flex-wrap mb-1">
+          <h3 className="font-semibold text-black text-sm">{p.name}</h3>
+          <div className="flex gap-1.5 flex-shrink-0">
+            {p.github && <a href={p.github} target="_blank" rel="noreferrer" className="text-[11px] px-2 py-0.5 bg-black/5 hover:bg-black/10 rounded-lg text-zinc-600 font-medium transition-colors">GitHub</a>}
+            {p.liveDemo && <a href={p.liveDemo} target="_blank" rel="noreferrer" className="text-[11px] px-2 py-0.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-medium transition-colors">Live</a>}
+          </div>
+        </div>
+        {p.techStack && (
+          <p className="text-[11px] font-mono text-zinc-500 mb-2">
+            <span className="text-zinc-400">Tech:</span> {p.techStack}
+          </p>
+        )}
+        <ul className="space-y-1">
+          {p.bullets.map((b, j) => (
+            <li key={j} className="flex gap-2 text-xs text-zinc-600 leading-relaxed">
+              <span className="text-teal-500 mt-0.5 flex-shrink-0">▸</span>{b}
+            </li>
+          ))}
+        </ul>
+      </Card>
+    ))}
+  </motion.div>
+);
+
+const CertsPanel = () => (
+  <motion.div {...fadeUp} className="space-y-3">
+    {certifications.length > 0 && (
+      <div>
+        <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2 pl-1">Certifications</h3>
+        <div className="space-y-2">
+          {certifications.map((c, i) => (
+            <Card key={i} className="flex items-start gap-3">
+              <span className="text-teal-500 mt-0.5 flex-shrink-0 text-base">🏅</span>
+              <div>
+                <p className="text-sm font-semibold text-black">{c.title}</p>
+                {c.issuer && <p className="text-xs text-zinc-500 mt-0.5">{c.issuer}</p>}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </motion.div>
+);
+
+const PANELS = {
+  About: <AboutPanel />,
+  Education: <EducationPanel />,
+  Experience: <ExperiencePanel />,
+  Skills: <SkillsPanel />,
+  Projects: <ProjectsPanel />,
+  Certs: <CertsPanel />,
+};
+
+/* ──────────────── MAIN COMPONENT ──────────────── */
+
+const Resume = () => {
+  const [activeTab, setActiveTab] = useState("About");
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-teal-50/40 font-sans">
+      {/* Ambient glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-teal-400/10 rounded-full blur-[120px] pointer-events-none z-0" />
+
+      <div className="relative z-10 max-w-2xl mx-auto px-4 pt-16 pb-28">
+
+        {/* ── Header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-8"
+        >
+          {/* Avatar initials */}
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center mx-auto mb-3 shadow-lg shadow-teal-200">
+            <span className="text-white text-xl font-bold tracking-wide">
+              {personalInfo.name.split(" ").map(n => n[0]).join("")}
+            </span>
+          </div>
+
+          <h1 className="text-3xl font-black text-black tracking-tight">{personalInfo.name}</h1>
+          <p className="text-sm text-teal-600 font-medium mt-1">B.Tech CSE · Full-Stack Developer</p>
+          <p className="text-xs text-zinc-400 mt-1">{personalInfo.location}</p>
+
+          {/* Contact pills */}
+          <div className="flex flex-wrap justify-center gap-2 mt-4">
+            <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-white border border-black/8 text-zinc-600 hover:text-black hover:border-teal-400/50 hover:shadow-sm transition-all">
+              ✉ {personalInfo.email}
+            </a>
+            <a href={`tel:${personalInfo.phone}`} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-white border border-black/8 text-zinc-600 hover:text-black hover:border-teal-400/50 hover:shadow-sm transition-all">
+              📞 {personalInfo.phone}
+            </a>
+            <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-white border border-black/8 text-zinc-600 hover:text-black hover:border-teal-400/50 hover:shadow-sm transition-all">
+              in LinkedIn
+            </a>
+            <a href={personalInfo.github} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-white border border-black/8 text-zinc-600 hover:text-black hover:border-teal-400/50 hover:shadow-sm transition-all">
+              ⌥ GitHub
+            </a>
+            <a href={personalInfo.portfolio} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-teal-600 text-white hover:bg-teal-700 hover:shadow-md transition-all">
+              ↗ Portfolio
+            </a>
+          </div>
+        </motion.div>
+
+        {/* ── Tab bar ── */}
+        <div className="flex gap-1 bg-black/5 rounded-2xl p-1 mb-6 overflow-x-auto no-scrollbar">
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`relative flex-1 min-w-fit text-xs font-semibold py-2 px-3 rounded-xl transition-all duration-200 whitespace-nowrap ${
+                activeTab === tab
+                  ? "text-teal-700"
+                  : "text-zinc-500 hover:text-zinc-700"
+              }`}
+            >
+              {activeTab === tab && (
+                <motion.div
+                  layoutId="tab-pill"
+                  className="absolute inset-0 bg-white rounded-xl shadow-sm border border-teal-200/60"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{tab}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* ── Panel ── */}
+        <AnimatePresence mode="wait">
+          <div key={activeTab}>
+            {PANELS[activeTab]}
+          </div>
+        </AnimatePresence>
+      </div>
+
+      {/* ── Floating download button ── */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <PDFDownloadLink
+          document={<MyDocument />}
+          fileName="Ayushi_Tiwari_Resume.pdf"
+          className="group flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-teal-600 hover:bg-teal-700 rounded-full shadow-[0_4px_24px_rgba(13,148,136,0.4)] hover:shadow-[0_6px_28px_rgba(13,148,136,0.55)] transition-all duration-200"
+        >
+          {({ loading }) => (
+            <>
+              <span>{loading ? "Generating…" : "Download PDF"}</span>
+              <span className={`text-base ${loading ? "animate-spin" : "group-hover:translate-y-0.5 transition-transform"}`}>
+                {loading ? "⟳" : "↓"}
+              </span>
+            </>
+          )}
+        </PDFDownloadLink>
+      </div>
+    </div>
+  );
 };
 
 export default Resume;

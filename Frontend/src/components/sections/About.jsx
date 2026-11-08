@@ -30,13 +30,13 @@ export const About = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <p>
-            Hello! I'm a passionate web developer with a keen eye for design and a strong foundation in modern frontend technologies. I love creating beautiful, performant, and accessible user interfaces.
+            Hello! I'm Ayushi Tiwari, a Computer Science and Engineering student at Sarala Birla University, Ranchi. I have a passion for building responsive and meaningful web applications using modern technologies like React, Node.js, and MongoDB.
           </p>
           <p>
-            My journey in web development started with tweaking CSS on custom blogs and evolved into building complex single-page applications. I believe that good design is not just about aesthetics, but about how it works and feels.
+            My journey in web development has taken me from crafting simple HTML pages to building full-stack platforms with CMS, authentication, and real-time features. I interned as a Web Developer at CodeZoner, where I built InkFlow — a full-featured blogging platform with a rich text editor and Cloudinary-powered media uploads.
           </p>
           <p>
-            When I'm not coding, you can find me exploring new design trends, contributing to open-source, or enjoying a good cup of coffee while reading about the latest tech.
+            When I'm not coding, you'll find me sketching, cooking, or traveling to explore new places and perspectives.
           </p>
         </motion.div>
       </div>
