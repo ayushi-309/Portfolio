@@ -1,9 +1,9 @@
 export const resumeData = {
     personalInfo: {
-        name: "Ayushi Tiwari",
+        name: "AYUSHI TIWARI",
         email: "tayushi751@gmail.com",
         phone: "+91 7061858360",
-        location: "Garhwa, Jharkhand, India",
+        location: "Ranchi, Jharkhand",
         portfolio: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
         portfolioDisplay: "Portfolio",
         linkedin: "https://www.linkedin.com/in/ayushi-tiwari-2a4538315",
@@ -23,23 +23,9 @@ export const resumeData = {
             schoolName: "Sarala Birla University",
             degree: "Bachelor of Technology in Computer Science and Engineering",
             location: "Ranchi, Jharkhand",
-            date: "Aug 2023 – Present",
+            date: "Aug 2023 - Present",
             grade: "CGPA: 7.09",
             coursework: "Operating Systems, Data Structures, Analysis of Algorithms, Artificial Intelligence, Machine Learning, Networking, Databases"
-        },
-        {
-            schoolName: "SS J Namdhari Collage, Garhwa",
-            degree: "Higher Secondary (12th) – JAC",
-            location: "Garhwa, Jharkhand",
-            date: "2023",
-            grade: "Percentage: 64.6%"
-        },
-        {
-            schoolName: "Banshidhar Parasnath DAV Public School, Pharathia",
-            degree: "Secondary School (10th) – CBSE",
-            location: "Garhwa, Jharkhand",
-            date: "2021",
-            grade: "Percentage: 66.2%"
         }
     ],
     experience: [
@@ -47,14 +33,14 @@ export const resumeData = {
             company: "CodeZoner",
             role: "Web Developer Intern",
             location: "Remote",
-            date: "8 July 2026 – 8 Aug 2026",
+            date: "8 July 2026 - 8 Aug 2026",
             projectName: "InkFlow | Blog Platform with CMS",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
-            techStack: "React, Tailwind CSS, Redux, Node, Express, MongoDB, JWT, VS Code, TipTap Editor",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
+            techStack: "React, Tailwind CSS, Redux, Node, Express, MongoDB, JWT, VS Code, tiptap-editor",
             bullets: [
-                "A beautifully designed, responsive reader experience.",
-                "Integrated TipTap editor for smooth content creation."
+                "A beautifully designed, responsive reader experience",
+                "Integrated TipTap editor for smooth content creation"
             ]
         }
     ],
@@ -80,33 +66,11 @@ export const resumeData = {
             list: "Traveling, Cooking, Baking, Gardening, Reading Books"
         }
     ],
-    certifications: [
-        {
-            title: "Web Development Virtual Internship",
-            issuer: "CodeZoner EdTech Private Limited"
-        },
-        {
-            title: "HTML5, CSS3 and JavaScript Certification",
-            issuer: "Infosys Springboard (Course Completion)"
-        },
-        {
-            title: "DEATHON 2026 – Certificate of Participation",
-            issuer: "IRanchi"
-        },
-        {
-            title: "Fundamentals of Artificial Intelligence – Elite",
-            issuer: "NPTEL / SWAYAM, IIT Guwahati"
-        },
-        {
-            title: "Adobe University Hackathon – Certificate of Participation",
-            issuer: "Adobe / Unstop"
-        }
-    ],
     projects: [
         {
             name: "Movie Recommendations",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
             techStack: "React.JS, CSS, HTML",
             bullets: [
                 "Developed a movie recommendation website with a simple and responsive user interface.",
@@ -116,8 +80,8 @@ export const resumeData = {
         {
             name: "Rock Paper Scissors Game",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
-            techStack: "HTML, CSS, JavaScript",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
+            techStack: "HTML, CSS, and JavaScript",
             bullets: [
                 "Designed a responsive UI for smooth gameplay across desktop and mobile devices.",
                 "Implemented game logic to detect winners and handle player turns."
@@ -126,7 +90,7 @@ export const resumeData = {
         {
             name: "Expense Tracker",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
             techStack: "React.js, Node.js, Express.js, MongoDB, Mongoose, JWT, Tailwind CSS",
             bullets: [
                 "Track daily expenses with an easy-to-use interface.",
@@ -134,19 +98,19 @@ export const resumeData = {
             ]
         },
         {
-            name: "Naye Pankh Foundation — Volunteer Portal",
+            name: "NayePankh Foundation — Volunteer Portal",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
             techStack: "HTML, CSS, JavaScript",
             bullets: [
-                "Built a responsive volunteer portal during internship at NayePankh Foundation.",
+                "Built a responsive volunteer portal during my internship at NayePankh Foundation.",
                 "Implemented responsive layouts for a smooth desktop and mobile experience."
             ]
         },
         {
             name: "Tic-Tac-Toe Game",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
             techStack: "HTML5, CSS3, JavaScript",
             bullets: [
                 "Implemented game logic to manage player turns, winning combinations, and draw conditions.",
@@ -154,14 +118,41 @@ export const resumeData = {
             ]
         },
         {
-            name: "Food Delivery",
+            name: "FoodDelivery",
             github: "https://github.com/ayushi-309",
-            liveDemo: "",
+            liveDemo: "https://portfolio-seven-livid-w4rhaglerv.vercel.app/",
             techStack: "HTML5, CSS3",
             bullets: [
                 "Developed a responsive food delivery landing page with a clean and user-friendly interface.",
-                "Implemented responsive layouts for consistent experience across different screen sizes."
+                "Implemented responsive layouts to provide a consistent user experience across different screen sizes."
             ]
+        }
+    ],
+    certifications: [
+        {
+            title: "Fundamentals of Artificial Intelligence – Elite",
+            issuer: "NPTEL / SWAYAM, IIT Guwahati",
+            keywords: "Machine Learning, Neural Networks, Search Algorithms, AI Ethics"
+        },
+        {
+            title: "Web Development Virtual Internship",
+            issuer: "CodeZoner EdTech Private Limited",
+            keywords: "MERN Stack, React, Node.js, Express, MongoDB, REST APIs"
+        },
+        {
+            title: "HTML5, CSS3 and JavaScript Certification",
+            issuer: "Infosys Springboard",
+            keywords: "Modern Frontend, Responsive Web Design, DOM Manipulation, ES6+"
+        },
+        {
+            title: "Adobe University Hackathon – Certificate of Participation",
+            issuer: "Adobe / Unstop",
+            keywords: "Rapid Prototyping, UI/UX Design, Creative Problem Solving"
+        },
+        {
+            title: "DEATHON 2026 – Certificate of Participation",
+            issuer: "Institution's Innovation Council, Sarala Birla University",
+            keywords: "Design Thinking, Team Collaboration, Idea Pitching"
         }
     ]
 };

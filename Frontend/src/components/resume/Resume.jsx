@@ -4,7 +4,15 @@ import MyDocument from "./MyDocument.jsx";
 import { resumeData } from "../../data/resumeData.js";
 import { motion, AnimatePresence } from "framer-motion";
 
-const { personalInfo, education, experience, skills, projects, certifications, seminars } = resumeData;
+const {
+  personalInfo,
+  education = [],
+  experience = [],
+  skills = [],
+  projects = [],
+  certifications = [],
+  seminars = []
+} = resumeData;
 
 const TABS = ["About", "Education", "Experience", "Skills", "Projects", "Certs"];
 
@@ -184,6 +192,11 @@ const CertsPanel = () => (
               <div>
                 <p className="text-sm font-semibold text-black">{c.title}</p>
                 {c.issuer && <p className="text-xs text-zinc-500 mt-0.5">{c.issuer}</p>}
+                {c.keywords && (
+                  <p className="text-xs text-teal-600/90 font-medium mt-1">
+                    <span className="text-zinc-400">Key Skills: </span>{c.keywords}
+                  </p>
+                )}
               </div>
             </Card>
           ))}
