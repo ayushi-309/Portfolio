@@ -189,12 +189,17 @@ const CertsPanel = () => (
           {certifications.map((c, i) => (
             <Card key={i} className="flex items-start gap-3">
               <span className="text-teal-500 mt-0.5 flex-shrink-0 text-base">🏅</span>
-              <div>
-                <p className="text-sm font-semibold text-black">{c.title}</p>
-                {c.issuer && <p className="text-xs text-zinc-500 mt-0.5">{c.issuer}</p>}
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                  <p className="text-sm font-semibold text-black">{c.title}</p>
+                  {c.issuer && <span className="text-xs text-zinc-500 font-medium">{c.issuer}</span>}
+                </div>
+                {c.description && (
+                  <p className="text-xs text-zinc-600 mt-1 leading-relaxed">{c.description}</p>
+                )}
                 {c.keywords && (
-                  <p className="text-xs text-teal-600/90 font-medium mt-1">
-                    <span className="text-zinc-400">Key Skills: </span>{c.keywords}
+                  <p className="text-[11px] text-teal-600/90 font-medium mt-1.5 flex items-center gap-1">
+                    <span className="text-zinc-400 font-normal">Key Skills: </span>{c.keywords}
                   </p>
                 )}
               </div>

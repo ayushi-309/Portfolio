@@ -132,27 +132,32 @@ export const resumeData = {
         {
             title: "Fundamentals of Artificial Intelligence – Elite",
             issuer: "NPTEL / SWAYAM, IIT Guwahati",
-            keywords: "Machine Learning, Neural Networks, Search Algorithms, AI Ethics"
+            description: "Completed comprehensive curriculum covering heuristic search algorithms, neural networks, machine learning models, and ethical AI; secured an Elite grade.",
+            keywords: "Machine Learning, Neural Networks, Heuristic Search, Knowledge Representation, AI Ethics"
         },
         {
             title: "Web Development Virtual Internship",
             issuer: "CodeZoner EdTech Private Limited",
-            keywords: "MERN Stack, React, Node.js, Express, MongoDB, REST APIs"
+            description: "Gained practical experience in full-stack architecture, building modular React interfaces, RESTful API integrations, and secure MongoDB schemas.",
+            keywords: "MERN Stack, React, Node.js, Express, MongoDB, RESTful APIs, JWT Auth"
         },
         {
             title: "HTML5, CSS3 and JavaScript Certification",
             issuer: "Infosys Springboard",
-            keywords: "Modern Frontend, Responsive Web Design, DOM Manipulation, ES6+"
+            description: "Mastered core frontend principles including semantic HTML, modern responsive design patterns, asynchronous JavaScript, and ES6+ standards.",
+            keywords: "Responsive Web Design, DOM Manipulation, ES6+ Syntax, Modern Web Standards"
         },
         {
             title: "Adobe University Hackathon – Certificate of Participation",
             issuer: "Adobe / Unstop",
-            keywords: "Rapid Prototyping, UI/UX Design, Creative Problem Solving"
+            description: "Collaborated in a national-level innovation sprint to design and prototype high-impact digital user experiences under timed challenge constraints.",
+            keywords: "Rapid Prototyping, Creative Problem Solving, Product UI/UX, Team Collaboration"
         },
         {
             title: "DEATHON 2026 – Certificate of Participation",
             issuer: "Institution's Innovation Council, Sarala Birla University",
-            keywords: "Design Thinking, Team Collaboration, Idea Pitching"
+            description: "Competed in an inter-college design-and-develop hackathon focusing on practical problem statements, user empathy, and functional prototype validation.",
+            keywords: "Design Thinking, Innovation, Problem Solving, Prototype Validation"
         }
     ]
 };

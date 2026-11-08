@@ -3,17 +3,17 @@ import {
 } from "@react-pdf/renderer";
 import { resumeData } from "../../data/resumeData.js";
 
-const DARK_NAVY = "#1e293b";
-const LINK_BLUE = "#2563eb";
+const DARK_NAVY   = "#1e293b";
+const LINK_BLUE   = "#2563eb";
 const SLATE_MUTED = "#475569";
-const SLATE_BODY = "#334155";
+const SLATE_BODY  = "#334155";
 
 const s = StyleSheet.create({
   page: {
     backgroundColor: "#ffffff",
-    paddingTop: 18,
-    paddingBottom: 18,
-    paddingHorizontal: 22,
+    paddingTop: 22,
+    paddingBottom: 22,
+    paddingHorizontal: 26,
     fontFamily: "Helvetica",
     color: DARK_NAVY,
   },
@@ -21,7 +21,7 @@ const s = StyleSheet.create({
   /* ── Header ── */
   header: {
     alignItems: "center",
-    marginBottom: 5,
+    marginBottom: 8,
   },
   name: {
     fontSize: 22,
@@ -29,42 +29,42 @@ const s = StyleSheet.create({
     color: DARK_NAVY,
     textTransform: "uppercase",
     letterSpacing: 0.5,
-    marginBottom: 3,
+    marginBottom: 4,
   },
   contactRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 3,
-    marginBottom: 1.5,
+    gap: 4,
+    marginBottom: 2,
   },
   link: {
-    fontSize: 8.5,
+    fontSize: 9,
     fontFamily: "Helvetica",
     color: LINK_BLUE,
     textDecoration: "none",
   },
   pipe: {
-    fontSize: 8.5,
+    fontSize: 9,
     fontFamily: "Helvetica",
     color: SLATE_MUTED,
   },
 
   /* ── Section Title ── */
   section: {
-    marginTop: 4,
-    marginBottom: 4,
+    marginTop: 6,
+    marginBottom: 6,
   },
   sectionTitle: {
-    fontSize: 10.5,
+    fontSize: 11,
     fontFamily: "Helvetica-Bold",
     color: DARK_NAVY,
     textTransform: "uppercase",
-    letterSpacing: 0.5,
-    borderBottomWidth: 1,
+    letterSpacing: 0.6,
+    borderBottomWidth: 1.2,
     borderBottomColor: DARK_NAVY,
-    paddingBottom: 1,
-    marginBottom: 4,
+    paddingBottom: 2,
+    marginBottom: 5,
   },
 
   /* ── Rows ── */
@@ -74,17 +74,17 @@ const s = StyleSheet.create({
     alignItems: "flex-start",
   },
   itemTitle: {
-    fontSize: 9.5,
+    fontSize: 10,
     fontFamily: "Helvetica-Bold",
     color: DARK_NAVY,
   },
   itemSub: {
-    fontSize: 9,
+    fontSize: 9.5,
     fontFamily: "Helvetica-Oblique",
     color: DARK_NAVY,
   },
   itemMeta: {
-    fontSize: 8.5,
+    fontSize: 9,
     fontFamily: "Helvetica",
     color: SLATE_MUTED,
     textAlign: "right",
@@ -92,9 +92,9 @@ const s = StyleSheet.create({
 
   /* ── Coursework / Tech / Details ── */
   courseworkLine: {
-    marginTop: 1.5,
-    fontSize: 8,
-    lineHeight: 1.2,
+    marginTop: 2,
+    fontSize: 8.5,
+    lineHeight: 1.3,
   },
   boldLabel: {
     fontFamily: "Helvetica-Bold",
@@ -109,79 +109,79 @@ const s = StyleSheet.create({
   expLinksRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 1,
-    marginBottom: 1,
+    marginTop: 1.5,
+    marginBottom: 1.5,
   },
   projectLabelLine: {
-    fontSize: 8.5,
-    marginTop: 1,
+    fontSize: 9,
+    marginTop: 1.5,
   },
   techUsedLine: {
-    fontSize: 8,
+    fontSize: 8.5,
     fontFamily: "Helvetica-Oblique",
     color: SLATE_MUTED,
-    marginTop: 1,
-    marginBottom: 1,
+    marginTop: 1.5,
+    marginBottom: 2,
   },
 
   /* ── Bullets ── */
   bulletRow: {
     flexDirection: "row",
-    paddingLeft: 6,
-    marginTop: 1,
+    paddingLeft: 8,
+    marginTop: 1.5,
   },
   bulletDot: {
-    fontSize: 8.5,
+    fontSize: 9,
     fontFamily: "Helvetica",
     color: SLATE_BODY,
-    marginRight: 3,
+    marginRight: 4,
   },
   bulletContent: {
     fontSize: 8.5,
     fontFamily: "Helvetica",
     color: SLATE_BODY,
     flex: 1,
-    lineHeight: 1.2,
+    lineHeight: 1.3,
   },
 
   /* ── Skills Grid ── */
   skillsContainer: {
-    marginTop: 1,
+    marginTop: 2,
   },
   skillRow: {
     flexDirection: "row",
-    marginBottom: 1.5,
+    marginBottom: 2.5,
     alignItems: "flex-start",
   },
   skillCategory: {
-    width: 78,
-    fontSize: 9,
+    width: 82,
+    fontSize: 9.5,
     fontFamily: "Helvetica-Bold",
     color: DARK_NAVY,
   },
   skillList: {
     flex: 1,
-    fontSize: 9,
+    fontSize: 9.5,
     fontFamily: "Helvetica",
     color: SLATE_BODY,
-    lineHeight: 1.2,
+    lineHeight: 1.25,
   },
 
   /* ── Projects ── */
   projectItem: {
-    marginBottom: 3.5,
+    marginBottom: 5,
   },
 
   /* ── Certifications ── */
   certItem: {
-    marginBottom: 2.5,
+    marginBottom: 3.5,
   },
   certKeywordsLine: {
     fontSize: 8,
     fontFamily: "Helvetica-Oblique",
     color: SLATE_MUTED,
-    marginTop: 0.5,
-    paddingLeft: 6,
+    marginTop: 1,
+    paddingLeft: 8,
   },
 });
 
@@ -204,6 +204,12 @@ const MyDocument = () => {
   const { personalInfo, education, experience, skills, projects, certifications = [] } = resumeData;
   const edu = education && education[0] ? education[0] : null;
   const exp = experience && experience[0] ? experience[0] : null;
+
+  // Curate top 4 high-impact projects for a clean, spacious, un-congested 1-page layout
+  const featuredProjects = projects && projects.length > 4 ? projects.slice(0, 4) : projects;
+
+  // Curate top 4 certifications for balanced visual breathing room
+  const featuredCerts = certifications && certifications.length > 4 ? certifications.slice(0, 4) : certifications;
 
   return (
     <Document>
@@ -234,7 +240,7 @@ const MyDocument = () => {
               <Text style={s.itemTitle}>{edu.schoolName}</Text>
               <Text style={s.itemMeta}>{edu.location}</Text>
             </View>
-            <View style={[s.rowBetween, { marginTop: 1 }]}>
+            <View style={[s.rowBetween, { marginTop: 1.5 }]}>
               <Text style={s.itemSub}>{edu.degree}</Text>
               <Text style={s.itemMeta}>{edu.date}</Text>
             </View>
@@ -255,7 +261,7 @@ const MyDocument = () => {
               <Text style={s.itemTitle}>{exp.company}</Text>
               <Text style={s.itemMeta}>{exp.location}</Text>
             </View>
-            <View style={[s.rowBetween, { marginTop: 1 }]}>
+            <View style={[s.rowBetween, { marginTop: 1.5 }]}>
               <Text style={s.itemSub}>{exp.role}</Text>
               <Text style={s.itemMeta}>{exp.date}</Text>
             </View>
@@ -295,10 +301,10 @@ const MyDocument = () => {
         )}
 
         {/* ══ PROJECTS ══ */}
-        {projects && projects.length > 0 && (
+        {featuredProjects && featuredProjects.length > 0 && (
           <View style={s.section}>
             <Text style={s.sectionTitle}>PROJECTS</Text>
-            {projects.map((proj, idx) => (
+            {featuredProjects.map((proj, idx) => (
               <View key={idx} style={s.projectItem} wrap={false}>
                 <View style={s.rowBetween}>
                   <Text style={s.itemTitle}>{proj.name}</Text>
@@ -318,10 +324,10 @@ const MyDocument = () => {
         )}
 
         {/* ══ CERTIFICATIONS ══ */}
-        {certifications && certifications.length > 0 && (
+        {featuredCerts && featuredCerts.length > 0 && (
           <View style={s.section}>
             <Text style={s.sectionTitle}>CERTIFICATIONS</Text>
-            {certifications.map((c, idx) => (
+            {featuredCerts.map((c, idx) => (
               <View key={idx} style={s.certItem} wrap={false}>
                 <View style={s.rowBetween}>
                   <Text style={s.itemTitle}>{c.title}</Text>
