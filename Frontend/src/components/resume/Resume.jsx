@@ -14,7 +14,7 @@ const {
   seminars = []
 } = resumeData;
 
-const TABS = ["About", "Education", "Experience", "Skills", "Projects", "Certs"];
+const TABS = ["About", "Education", "Experience", "Skills", "Certs", "Projects"];
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },

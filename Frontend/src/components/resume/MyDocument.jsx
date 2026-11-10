@@ -174,14 +174,20 @@ const s = StyleSheet.create({
 
   /* ── Certifications ── */
   certItem: {
-    marginBottom: 3.5,
+    marginBottom: 4,
+  },
+  certDescLine: {
+    fontSize: 8,
+    fontFamily: "Helvetica",
+    color: SLATE_BODY,
+    marginTop: 1,
+    lineHeight: 1.25,
   },
   certKeywordsLine: {
     fontSize: 8,
     fontFamily: "Helvetica-Oblique",
     color: SLATE_MUTED,
     marginTop: 1,
-    paddingLeft: 8,
   },
 });
 
@@ -300,6 +306,30 @@ const MyDocument = () => {
           </View>
         )}
 
+        {/* ══ CERTIFICATIONS ══ */}
+        {featuredCerts && featuredCerts.length > 0 && (
+          <View style={s.section}>
+            <Text style={s.sectionTitle}>CERTIFICATIONS</Text>
+            {featuredCerts.map((c, idx) => (
+              <View key={idx} style={s.certItem} wrap={false}>
+                <View style={s.rowBetween}>
+                  <Text style={s.itemTitle}>{c.title}</Text>
+                  <Text style={s.itemMeta}>{c.issuer}</Text>
+                </View>
+                {c.description && (
+                  <Text style={s.certDescLine}>{c.description}</Text>
+                )}
+                {c.keywords && (
+                  <Text style={s.certKeywordsLine}>
+                    <Text style={s.boldLabel}>Key Skills: </Text>
+                    {c.keywords}
+                  </Text>
+                )}
+              </View>
+            ))}
+          </View>
+        )}
+
         {/* ══ PROJECTS ══ */}
         {featuredProjects && featuredProjects.length > 0 && (
           <View style={s.section}>
@@ -318,27 +348,6 @@ const MyDocument = () => {
                 {proj.bullets && proj.bullets.map((b, bIdx) => (
                   <Bullet key={bIdx} text={b} />
                 ))}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* ══ CERTIFICATIONS ══ */}
-        {featuredCerts && featuredCerts.length > 0 && (
-          <View style={s.section}>
-            <Text style={s.sectionTitle}>CERTIFICATIONS</Text>
-            {featuredCerts.map((c, idx) => (
-              <View key={idx} style={s.certItem} wrap={false}>
-                <View style={s.rowBetween}>
-                  <Text style={s.itemTitle}>{c.title}</Text>
-                  <Text style={s.itemMeta}>{c.issuer}</Text>
-                </View>
-                {c.keywords && (
-                  <Text style={s.certKeywordsLine}>
-                    <Text style={s.boldLabel}>Key Skills: </Text>
-                    {c.keywords}
-                  </Text>
-                )}
               </View>
             ))}
           </View>
